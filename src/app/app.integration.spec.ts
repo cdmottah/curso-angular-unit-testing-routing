@@ -1,39 +1,13 @@
 import { ComponentFixture, fakeAsync, TestBed, tick } from "@angular/core/testing";
 import { RouterTestingModule } from "@angular/router/testing";
 import { AppComponent } from "./app.component";
-import { Component, NO_ERRORS_SCHEMA } from "@angular/core";
+import { NO_ERRORS_SCHEMA } from "@angular/core";
 import { Router, RouterLinkWithHref } from "@angular/router";
 import { clickElement, query, queryAllByDirective } from "src/testing";
+import { routes } from "./app-routing.module";
+import { AppModule } from './app.module'
 
-@Component({
-  selector: 'app-pico-preview'
-})
-class PicoPreviewComponent { }
 
-@Component({
-  selector: 'app-people'
-})
-class PeopleComponent { }
-
-@Component({
-  selector: 'app-others'
-})
-class OthersComponent { }
-
-const routes = [
-  {
-    path: 'pico-preview',
-    component: PicoPreviewComponent
-  },
-  {
-    path: 'people',
-    component: PeopleComponent
-  },
-  {
-    path: 'others',
-    component: OthersComponent
-  },
-];
 
 fdescribe('App integration test', () => {
   let fixture: ComponentFixture<AppComponent>;
@@ -42,13 +16,8 @@ fdescribe('App integration test', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [
-        RouterTestingModule.withRoutes(routes)
-      ],
-      declarations: [
-        AppComponent,
-        PicoPreviewComponent,
-        PeopleComponent,
-        OthersComponent
+        AppModule, // first import the module
+        RouterTestingModule.withRoutes(routes) // then the router module with the routes to override the default routes
       ],
       schemas: [NO_ERRORS_SCHEMA]
     }).compileComponents();
@@ -75,9 +44,18 @@ fdescribe('App integration test', () => {
   it('should render others on click', fakeAsync(async () => {
     clickElement(fixture, 'others-links', true)
     tick();
-    fixture.detectChanges();
+    fixture.detectChanges(); // ngOnInit of the others component
     expect(router.url).withContext('should be /others').toBe('/others')
     const othersDebugElement = query(fixture, 'app-others')
+    expect(othersDebugElement).toBeTruthy()
+  }));
+
+  it('should render pico on click', fakeAsync(async () => {
+    clickElement(fixture, 'pico-links', true)
+    tick();
+    fixture.detectChanges(); // ngOnInit of the pico component
+    expect(router.url).withContext('should be /pico-preview').toBe('/pico-preview')
+    const othersDebugElement = query(fixture, 'app-pico-preview')
     expect(othersDebugElement).toBeTruthy()
   }));
 

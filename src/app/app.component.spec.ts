@@ -15,7 +15,7 @@ class BannerComponentStub {}
 class FooterComponentStub {}
 
 
-fdescribe('AppComponent', () => {
+describe('AppComponent', () => {
 
   async function _setup() {
     await TestBed.configureTestingModule({

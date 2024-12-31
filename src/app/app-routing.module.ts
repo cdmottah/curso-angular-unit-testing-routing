@@ -1,11 +1,11 @@
-import { NgModule } from '@angular/core';
+import { Component, NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { PeopleComponent } from './components/people/people.component';
 import { PicoPreviewComponent } from './components/pico-preview/pico-preview.component';
 import { OthersComponent } from './components/others/others.component';
 
-const routes: Routes = [
+export const routes: Routes = [
   {
     path: 'pico-preview',
     component: PicoPreviewComponent

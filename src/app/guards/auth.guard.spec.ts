@@ -7,7 +7,7 @@ import { mockObservable, fakeRouterStateSnapshot, fakeActivatedRouteSnapshot, fa
 import { User } from "../models/user.model"
 import { generateOneUser } from "../models/user.mock"
 
-fdescribe('tests for AuthGuard', () => {
+describe('tests for AuthGuard', () => {
   const _setup = (data?: { user?: User | null }) => {
     if (!data) data = {}
     const { user = null } = data

@@ -1,15 +1,24 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { Product } from 'src/app/models/product.model';
+import { ProductsService } from 'src/app/services/product.service';
 
 @Component({
   selector: 'app-others',
   templateUrl: './others.component.html',
   styleUrls: ['./others.component.scss']
 })
-export class OthersComponent{
+export class OthersComponent {
 
   color = 'yellow';
   text = 'Un texto';
+  products: Product[] = [];
 
-  constructor() { }
+  constructor(
+    private _productService: ProductsService
+  ) { }
+
+  ngOnInit() {
+    this._productService.getAll().subscribe(products => this.products = products)
+  }
 
 }

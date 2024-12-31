@@ -4,6 +4,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { MyValidators } from './../../../utils/validators';
 
 import { UsersService } from './../../../services/user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register-form',
@@ -27,7 +28,8 @@ export class RegisterFormComponent {
 
   constructor(
     private fb: FormBuilder,
-    private usersService: UsersService
+    private usersService: UsersService,
+    private _router:Router
   ) {}
 
   register(event: Event) {
@@ -40,6 +42,7 @@ export class RegisterFormComponent {
         next: (rta) => {
           // redirect
           // alert
+          this._router.navigateByUrl('/login')
           this.status = 'success';
         },
         error: (error) => {

@@ -14,7 +14,7 @@ import { generateOneUser } from "./models/user.mock";
 
 
 
-fdescribe('App integration test', () => {
+describe('App integration test', () => {
 
   async function setup(data?: { user?: User | null }) {
     if (!data) data = {}

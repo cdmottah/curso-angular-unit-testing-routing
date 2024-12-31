@@ -51,7 +51,7 @@ describe('tests for AuthGuard', () => {
     const { guard, router } = _setup()
     guard.canActivate(_fakeActivatedRouteSnapshot, _fakeRouterStateSnapshot).subscribe((result) => {
       expect(result).toBeFalse()
-      expect(router.navigate).toHaveBeenCalledWith(['/home'])
+      expect(router.navigate).toHaveBeenCalledWith(['/'])
       doneFn()
     })
   })

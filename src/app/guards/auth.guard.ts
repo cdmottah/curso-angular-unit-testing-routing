@@ -23,12 +23,12 @@ export class AuthGuard implements CanActivate {
     state: RouterStateSnapshot): Observable<boolean | UrlTree> {
 
     // route.params['productId']
-    route.paramMap.get('productId')
+    // route.paramMap.get('productId')
     return this.authService.user$
     .pipe(
       map(user => {
         if(!user) {
-          this.router.navigate(['/home']);
+          this.router.navigate(['/']);
           return false;
         }
         return true;

@@ -20,13 +20,10 @@ export class AuthGuard implements CanActivate {
 
   canActivate(
     route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    // const token = this.tokenService.getToken();
-    // if (!token) {
-    //   this.router.navigate(['/home']);
-    //   return false;
-    // }
-    // return true;
+    state: RouterStateSnapshot): Observable<boolean | UrlTree> {
+
+    // route.params['productId']
+    route.paramMap.get('productId')
     return this.authService.user$
     .pipe(
       map(user => {
